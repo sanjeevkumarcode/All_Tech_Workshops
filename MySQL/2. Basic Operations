@@ -1,0 +1,72 @@
+### Creating sql connection
+
+
+import mysql.connector as sql
+
+connection=sql.connect(
+host="localhost",
+user="root",
+password="password="Give Own Password",
+database="student" #Particular database, Its up to me to select or not
+)
+
+print(connection)
+<mysql.connector.connection_cext.CMySQLConnection object at 0x000002E965D78910>
+
+
+### Creating table in MySQL using Python
+cursor= connection.cursor()
+cursor.execute("CREATE TABLE studentinfo1 (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), subject VARCHAR(255))")
+
+
+### Inserting records.
+### Inserting one record at a time.
+query="INSERT INTO studentinfo1(name, subject) values(%s, %s)"
+value=("sanjeev","statistics")
+cursor.execute(query,value)
+print("Row Inserted",cursor.lastrowid)
+
+
+### Inserting multiple records.
+query="INSERT INTO studentinfo1(name, subject) values(%s, %s)"
+value=[("sanjeev","statistics"),("santosh","science"),("skuma01","mathematics")]
+cursor.executemany(query,value)
+print("Row Inserted",cursor.lastrowid)
+
+
+### Selecting.
+cursor=connection.cursor()
+cursor.execute("select *from studentinfo1")
+
+
+### Fetching data.
+### Fetching all the data.
+
+
+cursor.fetchall()
+[(1, 'sanjeev', 'statistics'),
+ (2, 'sanjeev', 'statistics'),
+ (3, 'sanjeev', 'statistics'),
+ (4, 'sanjeev', 'statistics'),
+ (5, 'santosh', 'science'),
+ (6, 'skuma01', 'mathematics')]
+ 
+ 
+### Fetching one record at a time.
+cursor.fetchone()
+
+
+### Selecting particular row.
+cursor.execute("select *from studentinfo1 where id=4")
+cursor.fetchall()
+[(4, 'sanjeev', 'statistics')]
+
+
+### Selecting particular column.
+cursor.execute("select id from studentinfo1")
+cursor.fetchall()
+[(1,), (2,), (3,), (4,), (5,), (6,)]
+
+
+###Drop table.
+cursor.execute("drop table studentinfo1")

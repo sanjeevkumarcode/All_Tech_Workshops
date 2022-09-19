@@ -1,0 +1,23 @@
+### Creating Connection
+
+import mysql.connector as sql
+
+connection=sql.connect(
+host="localhost",
+user="root",
+password="Give Own Password"
+)
+
+print(connection)
+<mysql.connector.connection_cext.CMySQLConnection object at 0x00000212DBC4EAC0>
+
+
+### Performing operations on database.
+
+cursor= connection.cursor()
+
+cursor.execute("CREATE DATABASE students")
+cursor.execute("DROP DATABASE SANJEEV")
+cursor.execute("SHOW DATABASES")
+for x in cursor:
+    print(x)

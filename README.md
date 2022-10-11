@@ -1,2 +1,3 @@
-# All_Workshops
-This repository is created to upload all the works related to SQL, MySQL, Python, Python Libraries and Mathematics.
+## All_Tech_Workshops
+
+This repository is created to upload tech notes and practices step by step.
